@@ -1,24 +1,3 @@
-function guess_num(origin,numbers)
-{
-    var A_count = 0;
-    var B_count = 0;
-    var i = 0, j =0;
-    for(i=0;i < 4; i++)
-    {
-        if(origin[i] == numbers[i])
-            A_count++;
-    }
-    for(i=0; i < 4; i ++)
-    {
-        for(j =0 ; j < 4; j ++)
-        {
-            if(origin[i] == numbers[j])
-                B_count ++;
-        }
-    }
-    return A_count+"A" + (B_count-A_count) +"B";
-}
-
 function create_four_numbers()
 {
     var numbers ="";
@@ -159,7 +138,27 @@ function Game(create_random_number_func){
     this.create_random_number_func = create_random_number_func;
 }
 
-Game.prototype.play = function(number){
+Game.prototype.play = function(numbers){
     var origin =this.create_random_number_func()
-    return guess_num(origin,number);
+    return this.guess_num(origin,numbers);
+}
+Game.prototype.guess_num = function(origin, numbers)
+{
+    var A_count = 0;
+    var B_count = 0;
+    var i = 0, j =0;
+    for(i=0;i < 4; i++)
+    {
+        if(origin[i] == numbers[i])
+            A_count++;
+    }
+    for(i=0; i < 4; i ++)
+    {
+        for(j =0 ; j < 4; j ++)
+        {
+            if(origin[i] == numbers[j])
+                B_count ++;
+        }
+    }
+    return A_count+"A" + (B_count-A_count) +"B";
 }

@@ -1,29 +1,30 @@
 describe("Guess Number ", function() {
 
     var origin;
-
+    var game ;
     beforeEach(function() {
         origin =  [1,2,3,4];
+        game = new Game();
     });
 
     it("given origin number [1,2,3,4], when input [5,6,7,8] ,then result is '0A0B' ", function() {
         var numbers = [5,6,7,8];
-        expect(guess_num(origin,numbers)).toBe("0A0B");
+        expect(game.guess_num(origin,numbers)).toBe("0A0B");
     });
 
     it("given origin number [1,2,3,4], when input [1,2,3,4] ,then result is '4A0B' ", function() {
         var numbers = [1,2,3,4];
-        expect(guess_num(origin,numbers)).toBe("4A0B");
+        expect(game.guess_num(origin,numbers)).toBe("4A0B");
     });
 
     it("given origin number [1,2,3,4], when input [4,3,2,1] ,then result is '0A4B' ", function() {
         var numbers = [4,3,2,1];
-        expect(guess_num(origin,numbers)).toBe("0A4B");
+        expect(game.guess_num(origin,numbers)).toBe("0A4B");
     });
 
     it("given origin number [1,2,3,4], when input [1,2,4,3] ,then result is '2A2B' ", function() {
         var numbers = [1,2,4,3];
-        expect(guess_num(origin,numbers)).toBe("2A2B");
+        expect(game.guess_num(origin,numbers)).toBe("2A2B");
     });
 
 });
