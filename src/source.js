@@ -27,8 +27,6 @@ function is_four_bit(number)
     if(number.length !=4)
         return false;
     return true;
-
-//    return number >123 && number < 9876 ?true:false;
 }
 function is_different(number)
 {
@@ -162,3 +160,9 @@ Game.prototype.guess_num = function(origin, numbers)
     }
     return A_count+"A" + (B_count-A_count) +"B";
 }
+Game.prototype.guess = function(numbers)
+{
+    return this.play(numbers)  == "4A0B" ?"you win" :"not right" ;
+}
+
+
