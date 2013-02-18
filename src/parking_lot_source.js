@@ -5,5 +5,10 @@ function ParkingLot(capacity,available)
 }
 ParkingLot.prototype.park_a_car = function()
 {
-    return this.available != 0 ? true:false;
+    if(this.available == 0)
+    {
+        return false;
+    }
+    this.available -=1;
+    return true;
 }
