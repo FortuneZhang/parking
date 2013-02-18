@@ -160,9 +160,12 @@ Game.prototype.guess_num = function(origin, numbers)
     }
     return A_count+"A" + (B_count-A_count) +"B";
 }
-Game.prototype.guess = function(numbers)
+Game.prototype.guess = function(number)
 {
-    return this.play(numbers)  == "4A0B" ?"you win" :"not right" ;
+    var result = "";
+    result = this.play(number)  == "4A0B" ?"you win" :"not right" ;
+    return result;
+
 }
 
 

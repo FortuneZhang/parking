@@ -79,53 +79,140 @@ describe("test all test helpers  ",function(){
         })
     });
 });
-var create_random_number_func = function(){
+var create_random_number_func = function () {
     return "1234";
 }
-describe("bind guess number and create number",function (){
-        it('given random number 1234, when user guess with 1234, the result should be 4A0B',function(){
+describe("bind guess number and create number", function () {
+    it('given random number 1234, when user guess with 1234, the result should be 4A0B', function () {
 
+        var game = new Game(create_random_number_func);
+        var result = game.play("1234")
+        expect(result).toBe('4A0B')
+    })
+
+    describe("6 times ", function () {
+        it("guess 1 time ,when guess number is not right ,then the result should be 'not right' ", function () {
             var game = new Game(create_random_number_func);
-            var result = game.play("1234")
-            expect(result).toBe('4A0B')
+
+            var given_number = "1243";
+
+            var result = game.guess(given_number);
+            expect(result).toBe("not right");
         })
 
-describe("6 times ",function(){
-    it("guess 1 time ,when guess number is not right ,then the result should be 'not right' ",function(){
-        var game = new Game(create_random_number_func);
+        it("guess 1 time ,when guess number is right ,then the result should be 'you win' ", function () {
+            var game = new Game(create_random_number_func);
 
-        var given_number = "1243";
+            var given_number = "1234";
 
-        var result = game.guess(given_number);
-        expect(result).toBe("not right");
+            var result = game.guess(given_number);
+            expect(result).toBe("you win");
+        })
+        it("guess 3 times, 1th and 2th is wrong input ,3th is right input ,then you can get 'you win'", function () {
+            var game = new Game(create_random_number_func);
+            var numbers = ['1243', '1323', '1234'];
+            var result = "";
+
+            for (var i = 0; i < 3; i += 1) {
+                result = game.guess(numbers[i]);
+                if (result == "you win") {
+                    break;
+                }
+            }
+
+            expect(result).toBe("you win");
+        })
+
+        it("guess 6 times ,and all wrong ,then get' not right'", function () {
+            var game = new Game(create_random_number_func);
+            var numbers = ['1243', '1323', '1232', '2143', '3241', '3421'];
+            var result = "";
+
+            for (var i = 0; i < 6; i += 1) {
+                result = game.guess(numbers[i]);
+                if (result == "you win") {
+                    break;
+                }
+            }
+            expect(result).toBe("not right");
+        });
+
+        it("guess 6 times ,and 3th is right ,then get 'you win' ", function () {
+            var game = new Game(create_random_number_func);
+            var numbers = ['1243', '1323', '1234', '1232', '2143', '3241'];
+            var result = "";
+            var i = 0;
+
+            for (i = 0; i < 6; i += 1) {
+                result = game.guess(numbers[i]);
+                if (result == "you win") {
+                    break;
+                }
+            }
+            expect(result).toBe("you win");
+            expect(i).toBe(2);
+        });
+
+
+        it("guess 6 times ,and 6th is right , then get 'you win'", function () {
+            var game = new Game(create_random_number_func);
+            var numbers = ['1243', '1323', '1232', '2143', '3241', '1234'];
+            var result = "";
+
+            for (var i = 0; i < 6; i += 1) {
+                result = game.guess(numbers[i]);
+                if (result == "you win") {
+                    break;
+                }
+            }
+            expect(result).toBe("you win");
+        });
+
     })
-
-    it("guess 1 time ,when guess number is right ,then the result should be 'you win' ",function(){
-        var game = new Game(create_random_number_func);
-
-        var given_number = "1234";
-
-        var result = game.guess(given_number);
-        expect(result).toBe("you win");
-    })
-    it("guess 3 times, 1th and 2th is wrong input ,3th is right input ,then you can get 'you win'",function(){
-        var game = new Game(create_random_number_func);
-        var numbers = ['1243','1323','1234'];
-        var result = "";
-
-        for(var i =0 ; i < 3; i+=1)
-        {
-            result =game.guess(numbers[i]);
-        }
-
-        expect(result).toBe("you win");
-    })
-    // 6 次
-
-
-
 })
 
 
+ describe("page test",function(){
 
-})
+     it("when guess button on page click ,then Game.prototype.guess will be invoke",function(){
+
+
+
+         $("#btn_guess").click();
+
+
+
+     });
+
+
+ })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
