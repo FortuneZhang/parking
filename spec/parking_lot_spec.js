@@ -1,7 +1,7 @@
 describe("parking lot",function(){
 
     it("capacity is 0,when park a car ,it should fail",function(){
-        var parking_lot = new ParkingLot(0);
+        var parking_lot = new ParkingLot(0,"hello");
 
         var result =parking_lot.parking_a_car(1);
 
@@ -9,7 +9,7 @@ describe("parking lot",function(){
     });
 
     it("capacity is 10,available is 10,when park a car,position  should  0",function(){
-        var parking_lot = new ParkingLot(10);
+        var parking_lot = new ParkingLot(10,"hello");
 
         var result = parking_lot.parking_a_car(1);
 
@@ -17,7 +17,7 @@ describe("parking lot",function(){
     });
 
     it("capacity is 10,when park a car,capacity should be 9",function(){
-        var parking_lot = new ParkingLot(10);
+        var parking_lot = new ParkingLot(10,"hello");
 
         parking_lot.parking_a_car(1);
 
@@ -25,7 +25,7 @@ describe("parking lot",function(){
     }) ;
 
     it("available is 10,when get available count ,it should be 10",function(){
-        var parking_lot = new ParkingLot(10);
+        var parking_lot = new ParkingLot(10,"hello");
 
         var capacity_count = parking_lot.get_available_count();
 
@@ -37,16 +37,21 @@ describe("parking lot",function(){
      var result ;
      var parking_lot ;
      var parking_boy ;
+     var park_lot_array ;
      beforeEach(function(){
-         parking_lot = new ParkingLot(10);
-         parking_boy = new ParkingBoy(parking_lot);
+         park_lot_array = new Array;
+         parking_lot = new ParkingLot(10,"hello");
+         park_lot_array.push(parking_lot)
+         parking_boy = new ParkingBoy(park_lot_array);
      })
 
 
      it("parking lot is  full ,when parking boy park a car,it should be fail",function(){
-         parking_lot = new ParkingLot(0);
-         parking_boy = new ParkingBoy(parking_lot);
-         expect(parking_boy.parking_lot.get_available_count()).toBe(0);
+         parking_lot = new ParkingLot(0,"hello");
+         park_lot_array[0] =parking_lot ;
+
+         parking_boy = new ParkingBoy(park_lot_array);
+         expect(parking_boy.parking_lot[0].get_available_count()).toBe(0);
 
          var result =parking_boy.parking_a_car(1);
 
@@ -54,7 +59,7 @@ describe("parking lot",function(){
      });
 
      it("parking lot is not full ,when parking boy park a car,it should be 0",function(){
-         expect(parking_boy.parking_lot.get_available_count()).not.toBe(0);
+         expect(parking_boy.parking_lot[0].get_available_count()).not.toBe(0);
 
          var result =parking_boy.parking_a_car(1);
 
@@ -78,16 +83,16 @@ describe("parking lot",function(){
          expect(result).toBe(3);
      });
 
-     it("has park a car number is 1, when I un park a car ,I can get the 1",function(){
+     it("has park a car number is 1, when I un park the car ,I can get the car number is 1",function(){
          var ticket;
          ticket = parking_boy.parking_a_car(1);
 
          result = parking_boy.un_parking_a_car(ticket);
 
-         expect(result).toBe(1);
+         expect(result).toBe("hello:1");
      });
 
-     it("has park 3 cars,when parking boy un park a car, when i can get available will increase",function(){
+     it("has park 4 cars,when parking boy un park a car, when i can get available will increase",function(){
          var before_up_park_available_count;
          var after_up_park_available_count;
          var ticket;
@@ -102,6 +107,18 @@ describe("parking lot",function(){
 
          expect(after_up_park_available_count).toBe(before_up_park_available_count + 1) ;
      }) ;
+
+     it("parking boy control 3 parking lot and 3th has most available, when park a car , then he will park it in 3th",function(){
+
+     })  ;
+
+
+
+
+
+
+
+
 
  });
 
