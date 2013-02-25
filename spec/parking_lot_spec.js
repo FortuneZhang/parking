@@ -111,23 +111,23 @@ describe("parking lot",function(){
 describe("parking boy can control many parking lot", function () {
     var parking_boy ;
     var parking_lot_array;
-    var parking_lot_10; //with
-    var parking_lot_18;
-    var parking_lot_7;
+    var parking_lot_with_10;
+    var parking_lot_with_18;
+    var parking_lot_with_7;
     beforeEach(function(){
         parking_lot_array = new Array;
-        parking_lot_10 = new ParkingLot(10,"hello");
-        parking_lot_18 = new ParkingLot(18,"world");
-        parking_lot_7 = new ParkingLot(7,"ni hao");
-        parking_lot_array.push(parking_lot_10);
-        parking_lot_array.push(parking_lot_18);
-        parking_lot_array.push(parking_lot_7);
+        parking_lot_with_10 = new ParkingLot(10,"hello");
+        parking_lot_with_18 = new ParkingLot(18,"world");
+        parking_lot_with_7 = new ParkingLot(7,"ni hao");
+        parking_lot_array.push(parking_lot_with_10);
+        parking_lot_array.push(parking_lot_with_18);
+        parking_lot_array.push(parking_lot_with_7);
         parking_boy = new ParkingBoy(parking_lot_array) ;
     }) ;
 
 
     it("park boy control 3 lots and 2th has most available count, when park boy park a can ,then he park it in 2th", function () {
-        var most_available_lot = parking_lot_18 ;
+        var most_available_lot = parking_lot_with_18 ;
         var lot_available_count_before_park ;
         var lot_available_count_after_park ;
         lot_available_count_before_park = most_available_lot.get_available_count();
@@ -150,19 +150,16 @@ describe("parking boy can control many parking lot", function () {
     }) ;
 
     it("percent available three lot is 9/10 17/18 6/7 ,when park a car,the car will be parked in the highest " +
-        "available/capacity percent",function(){
+        "available/capacity percent this is 17 /18 ",function(){
+        parking_lot_with_10.parking_a_car(123);
+        parking_lot_with_18.parking_a_car(234);
+        parking_lot_with_7.parking_a_car(345);
 
-//        parking_boy.parking_a_cart_in_highest_available_percent_lot(123);
+        parking_boy.parking_a_car_in_available_percent_highest_lot(888);
 
-
-
-
-
-
-
-
-
+        expect(parking_lot_with_18.get_percent_available()).toBe((16 / 18)) ;
     });
+
 
 
 

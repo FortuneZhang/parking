@@ -3,6 +3,7 @@ function ParkingLot(capacity,park_name)
     this.parking_position = new Array(capacity);
     this.available_count = capacity;
     this.park_name = park_name;
+    this.percent_available  = 1 ;
 }
 ParkingLot.prototype.parking_a_car = function (car_number) {
     var position = 0;
@@ -16,6 +17,7 @@ ParkingLot.prototype.parking_a_car = function (car_number) {
     }
     this.available_count -= 1;
     this.parking_position[position] = car_number;
+    this.change_percent_available();
     return this.park_name + ":" +position;
 };
 
@@ -37,6 +39,15 @@ ParkingLot.prototype.un_parking_a_car = function(ticket)
     return car_number;
 };
 
+ParkingLot.prototype.change_percent_available = function()
+{
+  this.percent_available = this.available_count / (this.parking_position.length) ;
+}
+
+ParkingLot.prototype.get_percent_available = function()
+{
+    return this.percent_available;
+}
 
 function ParkingBoy(parking_lot_array)
 {
@@ -89,6 +100,21 @@ ParkingBoy.prototype.un_parking_a_car = function(ticket)
     }
 
     return lot.un_parking_a_car(car_number)
+}
+
+
+ParkingBoy.prototype.parking_a_car_in_available_percent_highest_lot = function(car_number)
+{
+    var highest_percent_available_parking_lot ;
+
+    for(var i = 0 ; i < this.parking_lots.length - 1; i += 1)
+    {
+        highest_percent_available_parking_lot =
+            this.parking_lots[i].get_percent_available() > this.parking_lots[i + 1].get_percent_available()?
+                this.parking_lots[i] : this.parking_lots[i + 1] ;
+
+    }
+    return highest_percent_available_parking_lot.parking_a_car(car_number);
 }
 
 
