@@ -53,7 +53,7 @@ describe("parking lot",function(){
          parking_boy = new ParkingBoy(park_lot_array);
          expect(parking_boy.parking_lots[0].get_available_count()).toBe(0);
 
-         var result =parking_boy.parking_a_car(1);
+         var result =parking_boy._parking_a_car(1);
 
          expect(result).toBe("fail");
      });
@@ -61,33 +61,33 @@ describe("parking lot",function(){
      it("parking lot is not full ,when parking boy park a car,it should be 0",function(){
          expect(parking_boy.parking_lots[0].get_available_count()).not.toBe(0);
 
-         var result =parking_boy.parking_a_car(1);
+         var result =parking_boy._parking_a_car(1);
 
          expect(result).toBe("hello:0");
      });
 
      it('parking lot is not full ,available is 10,when parking boy park a car,then available is 9', function () {
-         parking_boy.parking_a_car(1);
+         parking_boy._parking_a_car(1);
 
          result = parking_boy.get_available_count();
          expect(result).toBe(9);
      });
 
      it('parking lot available is 10 and has pork 3 car,when parking boy park a car,then position is 3', function () {
-         parking_boy.parking_a_car(1);
-         parking_boy.parking_a_car(2);
-         parking_boy.parking_a_car(3);
+         parking_boy._parking_a_car(1);
+         parking_boy._parking_a_car(2);
+         parking_boy._parking_a_car(3);
 
-         result = parking_boy.parking_a_car(4);
+         result = parking_boy._parking_a_car(4);
 
          expect(result).toBe("hello:3");
      });
 
      it("has park a car number is 1, when I un park the car ,I can get the car number is 1",function(){
          var ticket;
-         ticket = parking_boy.parking_a_car(1);
+         ticket = parking_boy._parking_a_car(1);
 
-         result = parking_boy.un_parking_a_car(ticket);
+         result = parking_boy._un_parking_a_car(ticket);
 
          expect(result).toBe(1);
      });
@@ -96,13 +96,13 @@ describe("parking lot",function(){
          var before_up_park_available_count;
          var after_up_park_available_count;
          var ticket;
-         parking_boy.parking_a_car(233);
-         parking_boy.parking_a_car(225);
-         ticket = parking_boy.parking_a_car(12);
-         parking_boy.parking_a_car(978);
+         parking_boy._parking_a_car(233);
+         parking_boy._parking_a_car(225);
+         ticket = parking_boy._parking_a_car(12);
+         parking_boy._parking_a_car(978);
          before_up_park_available_count = parking_boy.get_available_count();
 
-         parking_boy.un_parking_a_car(ticket) ;
+         parking_boy._un_parking_a_car(ticket) ;
          after_up_park_available_count = parking_boy.get_available_count();
 
          expect(after_up_park_available_count).toBe(before_up_park_available_count + 1) ;
@@ -111,14 +111,14 @@ describe("parking lot",function(){
 describe("parking boy can control many parking lot", function () {
     var parking_boy ;
     var parking_lot_array;
-    var parking_lot_10;
+    var parking_lot_10; //with
     var parking_lot_18;
     var parking_lot_7;
     beforeEach(function(){
         parking_lot_array = new Array;
         parking_lot_10 = new ParkingLot(10,"hello");
         parking_lot_18 = new ParkingLot(18,"world");
-        parking_lot_7 = new ParkingLot(10,"ni hao");
+        parking_lot_7 = new ParkingLot(7,"ni hao");
         parking_lot_array.push(parking_lot_10);
         parking_lot_array.push(parking_lot_18);
         parking_lot_array.push(parking_lot_7);
@@ -132,7 +132,7 @@ describe("parking boy can control many parking lot", function () {
         var lot_available_count_after_park ;
         lot_available_count_before_park = most_available_lot.get_available_count();
 
-        parking_boy.parking_a_car_in_most_available_lot(222);
+        parking_boy.parking_a_car(222);
         lot_available_count_after_park = most_available_lot.get_available_count();
 
         expect(lot_available_count_after_park).toBe(lot_available_count_before_park-1) ;
@@ -141,14 +141,28 @@ describe("parking boy can control many parking lot", function () {
     it("park a car and it's number is 123, when park boy un park a car ,it should be 123",function(){
         var ticket ;
         var car_number;
-        ticket= parking_boy.parking_a_car_in_most_available_lot(123);
+        ticket= parking_boy.parking_a_car(123);
 
-        car_number = parking_boy.un_parking_a_car_from_lots(ticket) ;
+        car_number = parking_boy.un_parking_a_car(ticket) ;
 
         expect(car_number).toBe(123);
 
     }) ;
 
+    it("percent available three lot is 9/10 17/18 6/7 ,when park a car,the car will be parked in the highest " +
+        "available/capacity percent",function(){
+
+//        parking_boy.parking_a_cart_in_highest_available_percent_lot(123);
+
+
+
+
+
+
+
+
+
+    });
 
 
 

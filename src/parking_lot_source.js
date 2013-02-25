@@ -43,7 +43,7 @@ function ParkingBoy(parking_lot_array)
     this.parking_lots =parking_lot_array;
 }
 
-ParkingBoy.prototype.parking_a_car = function(car_number)
+ParkingBoy.prototype._parking_a_car = function(car_number)
 {
    return  this.parking_lots[0].parking_a_car(car_number);
 };
@@ -53,7 +53,7 @@ ParkingBoy.prototype.get_available_count = function()
     return this.parking_lots[0].get_available_count();
 };
 
-ParkingBoy.prototype.un_parking_a_car = function(ticket)
+ParkingBoy.prototype._un_parking_a_car = function(ticket)
 {
     var car_number = ticket.split(":")[1];
     return this.parking_lots[0].un_parking_a_car(car_number);
@@ -71,14 +71,14 @@ ParkingBoy.prototype.get_most_available_lot = function() {
     }
     return most_available_lot;
 };
-ParkingBoy.prototype.parking_a_car_in_most_available_lot = function(car_number)
+ParkingBoy.prototype.parking_a_car = function(car_number)
 {
     var most_available_lot ;
     most_available_lot = this.get_most_available_lot();
     return most_available_lot.parking_a_car(car_number);
 } ;
 
-ParkingBoy.prototype.un_parking_a_car_from_lots = function(ticket)
+ParkingBoy.prototype.un_parking_a_car = function(ticket)
 {
     var lot;
     var lot_name = ticket.split(":")[0];
@@ -89,7 +89,6 @@ ParkingBoy.prototype.un_parking_a_car_from_lots = function(ticket)
     }
 
     return lot.un_parking_a_car(car_number)
-
 }
 
 
