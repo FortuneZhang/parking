@@ -38,12 +38,12 @@ describe("parking lot",function(){
      var parking_lot ;
      var parking_boy ;
      var park_lot_array ;
-     beforeEach(function(){
+     beforeEach(function () {
          park_lot_array = new Array;
-         parking_lot = new ParkingLot(10,"hello");
-         park_lot_array.push(parking_lot)
+         parking_lot = new ParkingLot(10, "hello");
+         park_lot_array.push(parking_lot);
          parking_boy = new ParkingBoy(park_lot_array);
-     })
+     });
 
 
      it("parking lot is  full ,when parking boy park a car,it should be fail",function(){
@@ -130,16 +130,15 @@ describe("parking boy can control many parking lot", function () {
         var most_available_lot = parking_lot_18 ;
         var lot_available_count_before_park ;
         var lot_available_count_after_park ;
-
         lot_available_count_before_park = most_available_lot.get_available_count();
 
         parking_boy.parking_a_car_in_most_available_lot(222);
         lot_available_count_after_park = most_available_lot.get_available_count();
 
         expect(lot_available_count_after_park).toBe(lot_available_count_before_park-1) ;
-    })
+    });
 
-    it("park a car and it's number is 123, when park boy un park a car ,it should be 124",function(){
+    it("park a car and it's number is 123, when park boy un park a car ,it should be 123",function(){
         var ticket ;
         var car_number;
         ticket= parking_boy.parking_a_car_in_most_available_lot(123);
