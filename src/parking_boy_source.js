@@ -1,3 +1,7 @@
+var PARKING_LOT_CHOICES = {
+    park_in_most_available :'parking_a_car_in_most_available_lot' ,
+    park_in_highest_percent_available :'parking_a_car_in_available_percent_highest_lot'
+};
 
 function ParkingBoy(parking_lot_array)
 {
@@ -32,12 +36,14 @@ ParkingBoy.prototype.get_most_available_lot = function() {
     }
     return most_available_lot;
 };
-ParkingBoy.prototype.parking_a_car = function(car_number)
+
+
+ParkingBoy.prototype.parking_a_car = function(car_number,choice)
 {
-    var most_available_lot ;
-    most_available_lot = this.get_most_available_lot();
-    return most_available_lot.parking_a_car(car_number);
+    return this[choice](car_number);
 } ;
+
+
 
 ParkingBoy.prototype.un_parking_a_car = function(ticket)
 {
@@ -52,6 +58,12 @@ ParkingBoy.prototype.un_parking_a_car = function(ticket)
     return lot.un_parking_a_car(car_number)
 };
 
+ParkingBoy.prototype.parking_a_car_in_most_available_lot = function(car_number)
+{
+    var most_available_lot ;
+    most_available_lot = this.get_most_available_lot();
+    return most_available_lot.parking_a_car(car_number);
+}
 
 ParkingBoy.prototype.parking_a_car_in_available_percent_highest_lot = function(car_number)
 {

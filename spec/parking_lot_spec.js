@@ -132,7 +132,7 @@ describe("parking boy can control many parking lot", function () {
         var lot_available_count_after_park ;
         lot_available_count_before_park = most_available_lot.get_available_count();
 
-        parking_boy.parking_a_car(222);
+        parking_boy.parking_a_car(222,PARKING_LOT_CHOICES.park_in_most_available);
         lot_available_count_after_park = most_available_lot.get_available_count();
 
         expect(lot_available_count_after_park).toBe(lot_available_count_before_park-1) ;
@@ -141,7 +141,7 @@ describe("parking boy can control many parking lot", function () {
     it("park a car and it's number is 123, when park boy un park a car ,it should be 123",function(){
         var ticket ;
         var car_number;
-        ticket= parking_boy.parking_a_car(123);
+        ticket= parking_boy.parking_a_car(123,PARKING_LOT_CHOICES.park_in_most_available);
 
         car_number = parking_boy.un_parking_a_car(ticket) ;
 
@@ -156,7 +156,7 @@ describe("parking boy can control many parking lot", function () {
         parking_lot_with_18.parking_a_car(234);
         parking_lot_with_7.parking_a_car(345);
 
-        parking_boy.parking_a_car_in_available_percent_highest_lot(888);
+        parking_boy.parking_a_car(888,PARKING_LOT_CHOICES.park_in_highest_percent_available);
 
         expect(parking_lot_with_18.get_percent_available()).toBe((16 / 18)) ;
     });
