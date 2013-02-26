@@ -149,7 +149,8 @@ describe("parking boy can control many parking lot", function () {
 
     }) ;
 
-    it("percent available three lot is 9/10 17/18 6/7 ,when park a car,the car will be parked in the highest " +
+    it("percent available three lot is 9/10 17/18 6/7 ,when park a car," +
+        "the car will be parked in the highest " +
         "available/capacity percent this is 17 /18 ",function(){
         parking_lot_with_10.parking_a_car(123);
         parking_lot_with_18.parking_a_car(234);
