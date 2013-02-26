@@ -58,12 +58,11 @@ ParkingBoy.prototype.un_parking_a_car = function(ticket)
     return lot.un_parking_a_car(car_number)
 };
 
-ParkingBoy.prototype.parking_a_car_in_most_available_lot = function(car_number)
-{
-    var most_available_lot ;
+ParkingBoy.prototype.parking_a_car_in_most_available_lot = function (car_number) {
+    var most_available_lot;
     most_available_lot = this.get_most_available_lot();
     return most_available_lot.parking_a_car(car_number);
-}
+};
 
 ParkingBoy.prototype.parking_a_car_in_available_percent_highest_lot = function(car_number)
 {
